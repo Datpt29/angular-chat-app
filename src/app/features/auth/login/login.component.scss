@@ -18,10 +18,6 @@ main {
     position: relative;
 }
 
-.hidden {
-    display: none;
-}
-
 .error {
     color: #ee0033;
 }
@@ -181,6 +177,16 @@ main {
             font-weight: 500;
             transition: 0.3s;
             padding-left: 16px;
+            display: none;
+        }
+
+        .usn-touched {
+            display: block;
+            color: #5680f9;
+        }
+
+        .usn-invalid {
+            color: #ee0033;
         }
 
         .subtext-psw {
@@ -191,6 +197,16 @@ main {
             font-weight: 500;
             transition: 0.3s;
             padding-left: 16px;
+            display: none;
+        }
+
+        .psw-touched {
+            display: block;
+            color: #5680f9;
+        }
+
+        .psw-invalid {
+            color: #ee0033;
         }
     }
 
