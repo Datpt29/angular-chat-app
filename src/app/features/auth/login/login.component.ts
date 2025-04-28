@@ -20,12 +20,8 @@ export class LoginComponent {
 
     const username = this.loginForm.value.username;
     const password = this.loginForm.value.password;
-    let errorUsername = document.querySelector(".error-usn") as HTMLElement;
-    let errorPassword = document.querySelector(".error-psw") as HTMLElement;
     let message = document.querySelector(".message") as HTMLElement;
     let loginMessage = document.querySelector(".login-message") as HTMLElement;
-    let inputUsername = document.getElementById("username") as HTMLInputElement;
-    let inputPassword = document.getElementById("password") as HTMLInputElement;
     let attempts: number = parseInt(localStorage.getItem("failedAttempts") || "0");
     const Max_attempts = 5;
 
