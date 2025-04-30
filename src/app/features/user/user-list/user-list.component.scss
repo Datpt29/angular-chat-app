@@ -228,7 +228,11 @@ main {
                         color: #7B8089;
                         font-weight: 500;
 
-
+                        .user-avatar {
+                            width: 50px;
+                            height: 50px;
+                            border-radius: 50%;
+                        }
                     }
 
                     .operator {
@@ -274,7 +278,6 @@ main {
     left: 0;
     background-color: rgba(79, 79, 79, 0.4);
     display: flex;
-    display: none;
 
     .popup-container {
         width: 450px;
@@ -354,7 +357,6 @@ main {
     padding: 20px 20px;
     box-shadow: 0 4px 24px 0 #5655D23D;
     background-color: #FFFFFF;
-    display: none;
 
     .info {
         width: 100%;
@@ -415,6 +417,26 @@ main {
             }
         }
     }
+
+    .logout {
+        width: 100%;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        font-family: quicksandf;
+        color: #353B44;
+        font-size: 16px;
+
+        svg {
+            margin-right: 12px;
+        }
+
+        &:hover {
+            background-color: #EE00331A;
+            cursor: pointer;
+            color: #ee0033;
+        }
+    }
 }
 
 .edit-user {
@@ -425,7 +447,6 @@ main {
     left: 0;
     background-color: rgba(79, 79, 79, 0.4);
     display: flex;
-    display: none;
 
     .edit-container {
         width: 682px;
@@ -561,11 +582,10 @@ main {
     left: 0;
     background-color: rgba(79, 79, 79, 0.4);
     display: flex;
-    display: none;
 
     .add-container {
         width: 682px;
-        height: 400px;
+        height: 416px;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -611,11 +631,11 @@ main {
 
         .add-main {
             width: 618px;
-            height: 228px;
-            margin: 24px 32px;
+            height: 240px;
+            margin: 24px 24px;
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 8px;
 
             label {
                 font-family: quicksandf;
@@ -642,6 +662,12 @@ main {
                 }
             }
 
+            .create-error {
+                color: #ee0033;
+                font-family: quicksand;
+                font-size: 14px;
+
+            }
         }
 
         .btn {

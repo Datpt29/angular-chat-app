@@ -161,6 +161,10 @@ main {
                 .subtext-usn {
                     color: #5680f9;
                 }
+
+                &::placeholder {
+                    opacity: 0;
+                }
             }
         }
 
@@ -202,7 +206,7 @@ main {
 
         .subtext-psw {
             position: absolute;
-            top: 22%;
+            top: 24%;
             font-size: 12px;
             font-family: quicksand;
             font-weight: 500;
