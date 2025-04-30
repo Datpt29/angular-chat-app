@@ -79,7 +79,6 @@ export class UserListComponent implements OnInit {
   ngOnInit(): void {
     this.user.getList().subscribe(res => {
       this.users = res;
-      console.log(this.users);
     })
   }
 
@@ -101,7 +100,7 @@ export class UserListComponent implements OnInit {
   get last_name() { return this.createForm.get('last_name') }
   get email() { return this.createForm.get('email') }
 
-  onSubmit(): void {
+  onCreate(): void {
     if (this.createForm.valid) {
       this.user.create(this.createForm.value).subscribe({
         next: (res: any) => {
@@ -114,8 +113,38 @@ export class UserListComponent implements OnInit {
   }
 
   editForm: FormGroup = new FormGroup({
+    id: new FormControl(null),
     first_name: new FormControl('', Validators.required),
     last_name: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
   })
+
+  get first_name_edit() { return this.editForm.get('first_name') }
+  get last_name_edit() { return this.editForm.get('last_name') }
+  get email_edit() { return this.editForm.get('email') }
+
+  getIdEdit(id: number): void {
+    this.user.getById(id).subscribe({
+      next: (res: any) => {
+        this.editForm.patchValue({
+          id: res.id,
+          first_name: res.first_name,
+          last_name: res.last_name,
+          email: res.email,
+        });
+      }
+    });
+  }
+
+  onUpdate(): any {
+    if (this.editForm.valid) {
+      this.user.update(this.editForm.value.id, this.editForm.value).subscribe({
+        next: () => {
+          this.getAll();
+          this.editForm.reset();
+        }
+      });
+      this.isEditUserPopupVisible = false;
+    }
+  }
 }

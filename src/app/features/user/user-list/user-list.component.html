@@ -63,8 +63,8 @@
                             <th class="last_name">{{user.last_name}}</th>
                             <th class="avatar"><img src="{{user.avatar}}" alt="avatar" class="user-avatar"></th>
                             <th class="operator">
-                                <span class="edit-btn" (click)="showEditUserPopup()"><svg width="18" height="18"
-                                        viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <span class="edit-btn" (click)="showEditUserPopup(); getIdEdit(user.id)"><svg width="18"
+                                        height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path
                                             d="M4.15499 14.6406C3.69749 14.6406 3.26999 14.4831 2.96249 14.1906C2.57249 13.8231 2.38499 13.2681 2.45249 12.6681L2.72999 10.2381C2.78249 9.78065 3.05999 9.17315 3.38249 8.84315L9.53999 2.32565C11.0775 0.698147 12.6825 0.653147 14.31 2.19065C15.9375 3.72815 15.9825 5.33315 14.445 6.96065L8.28749 13.4781C7.97249 13.8156 7.38749 14.1306 6.92999 14.2056L4.51499 14.6181C4.38749 14.6256 4.27499 14.6406 4.15499 14.6406ZM11.9475 2.18315C11.37 2.18315 10.8675 2.54315 10.3575 3.08315L4.19999 9.60815C4.04999 9.76565 3.87749 10.1406 3.84749 10.3581L3.56999 12.7881C3.53999 13.0356 3.59999 13.2381 3.73499 13.3656C3.86999 13.4931 4.07249 13.5381 4.31999 13.5006L6.73499 13.0881C6.95249 13.0506 7.31249 12.8556 7.46249 12.6981L13.62 6.18065C14.55 5.19065 14.8875 4.27565 13.53 3.00065C12.93 2.42315 12.4125 2.18315 11.9475 2.18315Z"
                                             fill="#8D99BB" />
@@ -181,25 +181,41 @@
                     </span>
                 </div>
 
-                <div class="edit-main">
-                    <div class="first_name input">
-                        <label>Tên</label>
-                        <input class="first_name" type="text" name="" id="">
+                <form action="" [formGroup]="editForm" (submit)="onUpdate()">
+                    <div class="edit-main">
+                        <div class="first_name input">
+                            <label>Họ</label>
+                            <input class="first_name" type="text" formControlName="first_name">
+                            <div *ngIf="first_name_edit?.errors?.required" class="edit-error">
+                                Bạn chưa nhập trường này
+                            </div>
+                        </div>
+                        <div class="last_name input">
+                            <label>Tên</label>
+                            <input class="last_name" type="text" formControlName="last_name">
+                            <div *ngIf="last_name_edit?.errors?.required" class="edit-error">
+                                Bạn chưa nhập trường này
+                            </div>
+                        </div>
+                        <div class="email input">
+                            <label for="email">Email</label>
+                            <input class="email" type="email" formControlName="email">
+                            <div>
+                                <div *ngIf="email_edit?.errors?.required" class="edit-error">
+                                    Bạn chưa nhập trường này
+                                </div>
+                                <div *ngIf="email_edit?.errors?.email" class="edit-error">
+                                    Email không hợp lệ
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="last_name input">
-                        <label>Họ</label>
-                        <input class="last_name" type="text" name="" id="">
-                    </div>
-                    <div class="email input">
-                        <label for="email">Email</label>
-                        <input class="email" type="email" name="" id="">
-                    </div>
-                </div>
 
-                <div class="btn">
-                    <button class="cancel" (click)="hideEditUserPopup()">Hủy bỏ</button>
-                    <button class="save">Lưu</button>
-                </div>
+                    <div class="btn">
+                        <button class="cancel-edit" (click)="hideEditUserPopup()">Hủy bỏ</button>
+                        <button class="save-edit" type="submit" [disabled]="editForm.invalid">Lưu</button>
+                    </div>
+                </form>
             </div>
         </div>
 
@@ -216,7 +232,7 @@
                     </span>
                 </div>
 
-                <form action="" (submit)="onSubmit()" [formGroup]="createForm">
+                <form action="" (submit)="onCreate()" [formGroup]="createForm">
                     <div class="add-main">
                         <div class="first_name input">
                             <label>Họ</label>

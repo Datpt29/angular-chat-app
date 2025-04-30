@@ -25,7 +25,7 @@ export class UserService {
     return this.http.post<any>('https://681042b927f2fdac2410be62.mockapi.io/api/users', data);
   }
 
-  update(data: any): Observable<any> {
-    return this.http.put<any>('https://681042b927f2fdac2410be62.mockapi.io/api/users', data);
+  update(id: number, data: any): Observable<any> {
+    return this.http.put<any>('https://681042b927f2fdac2410be62.mockapi.io/api/users/' + id, data);
   }
 }
