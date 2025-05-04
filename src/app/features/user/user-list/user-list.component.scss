@@ -126,6 +126,7 @@ main {
             .avatar {
                 width: 32px;
                 height: 32px;
+                border-radius: 50%;
 
                 &:hover {
                     cursor: pointer;
@@ -366,6 +367,7 @@ main {
         img {
             width: 44px;
             height: 44px;
+            border-radius: 50%;
         }
 
         .sub-info {
