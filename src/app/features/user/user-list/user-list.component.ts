@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { EmailValidator, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/core/services/user.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-user-list',
@@ -65,29 +66,29 @@ export class UserListComponent implements OnInit {
   }
 
   navigate(): void {
-    this.router.navigate(['/login']);
+    this.router.navigate(['auth/login']);
   }
 
   getAll(): void {
     this.user.getList().subscribe({
       next: (res: any) => {
-        this.users = res;
+        this.users = res.data;
       }
     });
   }
 
   ngOnInit(): void {
-    this.user.getList().subscribe(res => {
-      this.users = res;
-    })
+    this.getAll();
   }
 
   onDelete(id: number): void {
     this.user.delete(id).subscribe({
-      next: (res: any) => {
+      next: (res) => {
         this.getAll();
+        console.log(res.status);
       }
-    });
+    }
+    );
   }
 
   createForm: FormGroup = new FormGroup({
@@ -106,9 +107,10 @@ export class UserListComponent implements OnInit {
         next: (res: any) => {
           this.getAll();
           this.createForm.reset();
+          this.isAddUserPopupVisible = false;
+          console.log(res.status);
         }
       });
-      this.isAddUserPopupVisible = false;
     }
   }
 
@@ -127,10 +129,10 @@ export class UserListComponent implements OnInit {
     this.user.getById(id).subscribe({
       next: (res: any) => {
         this.editForm.patchValue({
-          id: res.id,
-          first_name: res.first_name,
-          last_name: res.last_name,
-          email: res.email,
+          id: res.data.id,
+          first_name: res.data.first_name,
+          last_name: res.data.last_name,
+          email: res.data.email,
         });
       }
     });
@@ -139,12 +141,13 @@ export class UserListComponent implements OnInit {
   onUpdate(): any {
     if (this.editForm.valid) {
       this.user.update(this.editForm.value.id, this.editForm.value).subscribe({
-        next: () => {
+        next: (res) => {
           this.getAll();
           this.editForm.reset();
+          this.isEditUserPopupVisible = false;
+          console.log(res.status);
         }
       });
-      this.isEditUserPopupVisible = false;
     }
   }
 }
