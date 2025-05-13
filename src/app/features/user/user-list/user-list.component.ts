@@ -95,7 +95,7 @@ export class UserListComponent implements OnInit {
     first_name: new FormControl('', Validators.required),
     last_name: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
-  })
+  });
 
   get first_name() { return this.createForm.get('first_name') }
   get last_name() { return this.createForm.get('last_name') }

@@ -68,8 +68,8 @@
                 </label>
                 <a class="forgot-pass" href="forgot_pass.html">Quên mật khẩu?</a>
             </div>
-            <button type="submit" id="login-btn" [disabled]="loginForm.invalid" (click)="showLoginMessage()">Đăng
-                nhập</button>
+            <button type="submit" id="login-btn" [disabled]="loginForm.invalid || isDisabledButton"
+                (click)="showLoginMessage()">Đăng nhập</button>
             <p class="signup-link-text">Bạn chưa có tài khoản? <a class="signup-link" href="signup.html">Đăng ký</a></p>
         </form>
 
@@ -78,7 +78,7 @@
                 <img src="./assets/icon/error-icon.svg" alt="">
             </div>
             <span class="message">
-
+                {{ loginMessage }}
             </span>
         </div>
     </main>
