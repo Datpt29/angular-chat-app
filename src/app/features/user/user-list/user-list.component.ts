@@ -67,6 +67,7 @@ export class UserListComponent implements OnInit {
 
   navigate(): void {
     this.router.navigate(['auth/login']);
+    localStorage.removeItem('token');
   }
 
   getAll(): void {

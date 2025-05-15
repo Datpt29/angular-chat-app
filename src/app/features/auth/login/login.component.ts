@@ -21,7 +21,9 @@ export class LoginComponent {
   isDisabledButton = false;
 
   showLoginMessage() {
-    this.isLoginMessageVisible = true;
+    if (this.loginMessage != "") {
+      this.isLoginMessageVisible = true;
+    }
   }
 
   hideLoginMessage() {
@@ -38,37 +40,46 @@ export class LoginComponent {
       this.loginMessage = "Bạn đã nhập sai quá nhiều lần. Vui lòng thử lại sau 5 phút";
       this.isDisabledButton = true;
       this.showLoginMessage();
+      this.unLockLogin();
+      this.hidePopup();
+      return;
     }
-    else {
-      this.auth.login(this.loginForm.value).subscribe({
-        next: (res: any) => {
-          if (res.status == 200) {
-            localStorage.removeItem("failedAttempts");
-            this.router.navigate(['user/userlist']);
-            console.log(res.body.token);
-          }
-        },
 
-        error: (err) => {
-          if (err.status == 400) {
-            attempts++;
-            localStorage.setItem("failedAttempts", attempts.toString());
-            if (attempts >= Max_attempts) {
-              this.loginMessage = "Bạn đã nhập sai quá nhiều lần. Vui lòng thử lại sau 5 phút";
-              this.isDisabledButton = true;
-            } else {
-              this.loginMessage = "Bạn đã nhập sai tài khoản hoặc mật khẩu"
-            }
-            this.showLoginMessage();
-          }
+    this.auth.login(this.loginForm.value).subscribe({
+      next: (res: any) => {
+        if (res.status == 200) {
+          this.loginMessage = "";
+          localStorage.removeItem("failedAttempts");
+          this.router.navigate(['user/userlist']);
+          localStorage.setItem('token', res.body.token || "");
         }
-      });
-    }
+      },
 
+      error: (err) => {
+        if (err.status == 400) {
+          attempts++;
+          localStorage.setItem("failedAttempts", attempts.toString());
+          if (attempts >= Max_attempts) {
+            this.loginMessage = "Bạn đã nhập sai quá nhiều lần. Vui lòng thử lại sau 5 phút";
+            this.isDisabledButton = true;
+            this.unLockLogin();
+          } else {
+            this.loginMessage = "Bạn đã nhập sai tài khoản hoặc mật khẩu"
+          }
+          this.showLoginMessage();
+          this.hidePopup();
+        }
+      }
+    });
+  }
+
+  hidePopup() {
     setTimeout(() => {
       this.hideLoginMessage();
-    }, 10000); //10s
+    }, 5000); //5s
+  }
 
+  unLockLogin() {
     setTimeout(() => {
       localStorage.removeItem("failedAttempts");
       this.loginMessage = "";

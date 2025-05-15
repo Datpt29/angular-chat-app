@@ -14,4 +14,8 @@ export class AuthService {
   login(data: Partial<User>): Observable<any> {
     return this.http.post(`${this.url}?api_key=${this.apiKey}`, data, { observe: 'response' });
   }
+
+  getToken() {
+    return localStorage.getItem('token');
+  }
 }
