@@ -48,10 +48,9 @@ export class LoginComponent {
     this.auth.login(this.loginForm.value).subscribe({
       next: (res: any) => {
         if (res.status == 200) {
-          this.loginMessage = "";
           localStorage.removeItem("failedAttempts");
           this.router.navigate(['user/userlist']);
-          localStorage.setItem('token', res.body.token || "");
+          localStorage.setItem('token', res.body.token);
         }
       },
 
@@ -76,6 +75,7 @@ export class LoginComponent {
   hidePopup() {
     setTimeout(() => {
       this.hideLoginMessage();
+      this.loginMessage = "";
     }, 5000); //5s
   }
 
