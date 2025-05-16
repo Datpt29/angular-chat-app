@@ -5,7 +5,7 @@ import { UserInforComponent } from './user-infor/user-infor.component';
 import { LoginGuard } from 'src/app/core/guards/login.guard';
 
 const routes: Routes = [
-  { path: '', component: UserListComponent },
+  { path: '', component: UserListComponent, canActivate: [LoginGuard] },
   { path: 'user/userlist', component: UserListComponent, canActivate: [LoginGuard] },
   { path: 'user/userinfo', component: UserInforComponent, canActivate: [LoginGuard] },
 ];
