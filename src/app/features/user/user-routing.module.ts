@@ -5,9 +5,13 @@ import { UserInforComponent } from './user-infor/user-infor.component';
 import { LoginGuard } from 'src/app/core/guards/login.guard';
 
 const routes: Routes = [
-  { path: '', component: UserListComponent, canActivate: [LoginGuard] },
-  { path: 'user/userlist', loadChildren: () => import('./user-list/user-list.component').then(m => m.UserListComponent), canActivate: [LoginGuard] },
-  { path: 'user/userinfo', loadChildren: () => import('./user-infor/user-infor.component').then(m => m.UserInforComponent), canActivate: [LoginGuard] },
+  {
+    path: '',
+    children: [
+      { path: 'userlist', component: UserListComponent, canActivate: [LoginGuard] },
+      { path: 'userinfo', component: UserInforComponent, canActivate: [LoginGuard] }
+    ]
+  },
 ];
 
 @NgModule({
