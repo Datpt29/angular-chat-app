@@ -1,0 +1,11 @@
+<div id="sidebar">
+    <img class="logo" src="./assets/img/logo.jpg" alt="">
+
+    <div class="sidebar-list">
+        <div class="sidebar-item" *ngFor="let sidebarItem of sidebarItems">
+            <a [routerLink]="sidebarItem.path" routerLinkActive="active">
+                <span [innerHTML]="sidebarItem.icon"></span>
+            </a>
+        </div>
+    </div>
+</div>

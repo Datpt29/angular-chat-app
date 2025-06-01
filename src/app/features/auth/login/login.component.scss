@@ -100,7 +100,7 @@ main {
     }
 
     #language {
-        font-family: quicksand;
+        font-family: 'Inter', sans-serif;
         font-size: 16px;
         border: none;
         color: #8D99BB;
@@ -177,7 +177,7 @@ main {
             width: 100%;
             height: 16px;
             color: #ee0033;
-            font-family: quicksand;
+            font-family: 'Inter', sans-serif;
             font-size: 12px;
             font-weight: 500;
             line-height: 2;
@@ -188,7 +188,7 @@ main {
             position: absolute;
             top: 24%;
             font-size: 12px;
-            font-family: quicksand;
+            font-family: 'Inter', sans-serif;
             font-weight: 500;
             transition: 0.3s;
             padding-left: 16px;
@@ -208,7 +208,7 @@ main {
             position: absolute;
             top: 24%;
             font-size: 12px;
-            font-family: quicksand;
+            font-family: 'Inter', sans-serif;
             font-weight: 500;
             transition: 0.3s;
             padding-left: 16px;
@@ -234,7 +234,7 @@ main {
 
         .save-pass {
             height: 16px;
-            font-family: quicksand;
+            font-family: 'Inter', sans-serif;
             font-weight: 500;
             color: #353B44;
             display: flex;
@@ -280,7 +280,7 @@ main {
         }
 
         .forgot-pass {
-            font-family: quicksand;
+            font-family: 'Inter', sans-serif;
             font-size: 16px;
             font-weight: 500;
             color: #5680f9;
@@ -293,7 +293,7 @@ main {
         height: 48px;
         color: #FCFCFC;
         font-size: 18px;
-        font-family: quicksand;
+        font-family: 'Inter', sans-serif;
         font-weight: 500;
         background-color: #ee0033;
         border: none;
@@ -313,13 +313,13 @@ main {
 
     .signup-link-text {
         text-align: center;
-        font-family: quicksand;
+        font-family: 'Inter', sans-serif;
         font-size: 14px;
         font-weight: 500;
 
         .signup-link {
             color: #5680f9;
-            font-family: quicksand;
+            font-family: 'Inter', sans-serif;
             font-size: 14px;
             font-weight: 700;
         }

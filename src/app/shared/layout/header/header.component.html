@@ -1,0 +1,63 @@
+<div id="header">
+    <div class="tab" (click)="hideUserInfo($event, UserInfo)">
+        <div class="tab-item ">
+            <img class="tag-user" src="./assets/icon/tag-user.svg" alt="">
+            Đối tác
+            <span class="close">
+                <img src="./assets/icon/close.svg" alt="">
+            </span>
+        </div>
+    </div>
+
+    <div class="notification">
+        <img src="./assets/icon/notification.svg" alt="notification icon">
+    </div>
+
+    <div class="user" (click)="showUserInfo()">
+        <img class="avatar" src="https://avatars.githubusercontent.com/u/208823729?v=4" alt="avatar">
+    </div>
+
+    <div class="user-info" #UserInfo *ngIf="isUserInfoVisible">
+        <div class="info">
+            <img src="https://avatars.githubusercontent.com/u/208823729?v=4" alt="avatar">
+            <div class="sub-info">
+                <span class="fullname">Lê Văn Đạo</span>
+                <span class="role">Quản lý</span>
+            </div>
+        </div>
+
+        <div class="accout-type"></div>
+
+        <div class="user-status"></div>
+
+        <div class="options">
+            <a href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                </svg>
+                Thông tin cá nhân
+            </a>
+        </div>
+        <div class="options">
+            <a href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3" />
+                    <path
+                        d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                </svg>
+                Cài đặt
+            </a>
+        </div>
+        <div class="options logout">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                <polyline points="16 17 21 12 16 7" />
+                <line x1="21" y1="12" x2="9" y2="12" />
+            </svg>
+            Đăng xuất
+        </div>
+    </div>
