@@ -17,6 +17,7 @@ export class PartnerListComponent implements OnInit {
   districts: District[] = [];
   wards: Ward[] = [];
   isVisibleEditModal = false;
+  isVisibleDeleteModal = false;
 
   constructor(private Partner: PartnerService, private router: Router, private Address: AddressService) { }
 
@@ -46,6 +47,14 @@ export class PartnerListComponent implements OnInit {
 
   hideEditModal(): void {
     this.isVisibleEditModal = false;
+  }
+
+  showDeleteModal() {
+    this.isVisibleDeleteModal = true;
+  }
+
+  hideDeleteModal() {
+    this.isVisibleDeleteModal = false;
   }
 
   onProvinceChange(province: { code: number, name: string }) {
@@ -103,6 +112,24 @@ export class PartnerListComponent implements OnInit {
         }
       })
     }
+  }
+
+  idDelete: number = 0;
+  nameDelete: string = '';
+
+  getIdDelete(id: number) {
+    this.idDelete = id;
+  }
+
+  getNameDelete(name: string) {
+    this.nameDelete = name;
+  }
+
+  onDelete() {
+    this.Partner.delete(this.idDelete).subscribe(() => {
+      this.getAll();
+      this.hideDeleteModal();
+    })
   }
 }
 

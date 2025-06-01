@@ -496,14 +496,15 @@
                             </div>
                         </div>
                         <img class="img" [src]="package.img">
-                        <button (click)="selectPackage(package.name, i)" [class.active]="package.isSelected">
+                        <button type="button" (click)="selectPackage(package.name, i)"
+                            [class.active]="package.isSelected">
                             {{package.isSelected ? "Đang chọn" : "Lựa chọn"}}
                         </button>
                     </div>
                 </div>
 
                 <div class="btn">
-                    <button type="button" class="cancel-btn" (click)="cancel()">Hủy bỏ</button>
+                    <button class="cancel-btn" (click)="cancel()">Hủy bỏ</button>
                     <button type="submit" class="complete-btn">Hoàn thành</button>
                 </div>
             </form>

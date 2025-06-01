@@ -524,3 +524,115 @@ h2 {
         }
     }
 }
+
+#delete-modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(79, 79, 79, 0.4);
+    display: flex;
+
+    .delete-container {
+        width: 474px;
+        height: 175px;
+        background-color: #FFF;
+        box-shadow: 4px 0 24px 0 #5655D23D;
+        border-radius: 12px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 24px;
+
+        .close-icon {
+            display: flex;
+            flex-direction: row-reverse;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        p {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: #353B44;
+            text-align: center;
+            margin: 24px 0;
+
+            .highlight {
+                color: #EE0033;
+            }
+        }
+
+        .btn {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 16px;
+
+            .cancel {
+                width: 107px;
+                height: 32px;
+                border: 1.5px solid #F899AD;
+                color: #EE0033;
+                background-color: #FFF;
+                border-radius: 5px;
+                padding: 6px 12px;
+                font-family: 'Inter', sans-serif;
+                font-weight: 600;
+                font-size: 16px;
+                display: flex;
+                flex-wrap: wrap;
+                align-content: center;
+                justify-content: center;
+
+                &:hover {
+                    border: none;
+                    color: #FFF;
+                    background-color: #EE0033;
+                    cursor: pointer;
+                }
+
+                .icon {
+                    height: 18px;
+                    margin-right: 4px;
+                }
+            }
+
+            .confirm {
+                width: 123px;
+                height: 32px;
+                border: none;
+                color: #FFF;
+                border-radius: 5px;
+                background-color: #EE0033;
+                font-family: 'Inter', sans-serif;
+                font-weight: 600;
+                font-size: 16px;
+                padding: 6px 12px;
+                display: flex;
+                flex-wrap: wrap;
+                align-content: center;
+                justify-content: center;
+
+                &:hover {
+                    border: 1.5px solid #F899AD;
+                    color: #EE0033;
+                    background-color: #FFF;
+                    cursor: pointer;
+                }
+
+                .icon {
+                    height: 18px;
+                    margin-right: 4px;
+                }
+            }
+        }
+    }
+
+
+}
