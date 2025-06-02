@@ -184,7 +184,7 @@ export class PartnerAddComponent implements OnInit {
   addForm2: FormGroup = new FormGroup({
     duration: new FormControl('month'),
     servicePackage: new FormControl('Cơ bản'),
-    status: new FormControl('')
+    status: new FormControl(true)
   });
 
   get duration() { return this.addForm2.get('duration')?.value }
