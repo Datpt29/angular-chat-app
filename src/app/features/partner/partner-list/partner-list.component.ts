@@ -75,7 +75,7 @@ export class PartnerListComponent implements OnInit {
   }
 
   editForm: FormGroup = new FormGroup({
-    id: new FormControl(''),
+    id: new FormControl(),
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     province: new FormControl('null'),
     district: new FormControl('null'),
@@ -89,10 +89,31 @@ export class PartnerListComponent implements OnInit {
     this.Partner.getById(id).subscribe({
       next: (res: any) => {
         this.editForm.patchValue({
+          is: res.id,
+          province: res.province
+        });
+
+        this.Address.getDistricts(res.province).subscribe({
+          next: (data) => {
+            this.districts = data.districts
+            console.log(data)
+          }
+        });
+
+        this.editForm.patchValue({
+          district: res.district
+        });
+
+        this.Address.getWards(res.district).subscribe({
+          next: (data) => {
+            this.wards = data.wards
+            console.log(data)
+          }
+        });
+
+        this.editForm.patchValue({
           id: res.id,
           name: res.name,
-          province: res.province,
-          district: res.district,
           ward: res.ward,
           detail: res.detail
         });
