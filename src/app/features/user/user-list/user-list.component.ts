@@ -11,34 +11,11 @@ import { User } from 'src/app/models/user';
 })
 export class UserListComponent implements OnInit {
   @ViewChild('UserInfo') UserInfo?: ElementRef;
-  isUserInfoVisible = false;
-  isLogoutPopupVisible = false;
   isAddUserPopupVisible = false;
   isEditUserPopupVisible = false;
   users: any;
 
   constructor(private router: Router, private user: UserService) { }
-
-  showUserInfo(): void {
-    this.isUserInfoVisible = true;
-  }
-
-  hideUserInfo(event: MouseEvent | null, UserInfo?: ElementRef): void {
-    if (event?.target && UserInfo) {
-      const target = event.target as HTMLElement;
-      if (!UserInfo.nativeElement.contains(target)) {
-        this.isUserInfoVisible = false;
-      }
-    }
-  }
-
-  showLogoutPopup(): void {
-    this.isLogoutPopupVisible = true;
-  }
-
-  hideLogoutPopup(): void {
-    this.isLogoutPopupVisible = false;
-  }
 
   showAddUserPopup(): void {
     this.isAddUserPopupVisible = true;
@@ -54,15 +31,6 @@ export class UserListComponent implements OnInit {
 
   hideEditUserPopup(): void {
     this.isEditUserPopupVisible = false;
-  }
-
-  onPopupBackgroundClick(event: MouseEvent, popupContainer: HTMLElement): void {
-    const target = event.target as HTMLElement;
-    if (!popupContainer.contains(target)) {
-      this.hideLogoutPopup();
-      // this.hideAddUserPopup();
-      // this.hideEditUserPopup();
-    }
   }
 
   navigate(): void {

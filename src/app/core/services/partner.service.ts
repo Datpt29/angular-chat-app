@@ -26,6 +26,10 @@ export class PartnerService {
     return this.http.put<any>(`${this.url}/${id}`, data);
   }
 
+  lock(id: number, status: boolean): Observable<any> {
+    return this.http.patch<any>(`${this.url}/${id}`, { status: status });
+  }
+
   delete(id: number): Observable<any> {
     return this.http.delete<any>(`${this.url}/${id}`);
   }

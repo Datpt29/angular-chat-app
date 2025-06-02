@@ -135,15 +135,15 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="status" [class.isActive]="partner.status === 'Đang sử dụng'"
-                                [class.isLock]="partner.status === 'Tạm khóa'">
+                            <td class="status" [class.isActive]="partner.status === true"
+                                [class.isLock]="partner.status === false">
                                 <span class="icon">
                                     <svg width="8" height="8" viewBox="0 0 8 8" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="4" cy="4" r="4" fill="currentcolor" />
                                     </svg>
                                 </span>
-                                {{partner.status}}
+                                {{partner.status ? 'Đang sử dụng': 'Tạm khóa'}}
                             </td>
                             <td class="date">{{partner.date}}</td>
                             <td class="operator">
@@ -162,7 +162,7 @@
                                     </svg>
                                 </span>
 
-                                <span class="lock-btn">
+                                <span class="lock-btn" (click)="lockPartner(partner)">
                                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -175,7 +175,6 @@
                                             d="M9.27173 12.8806C8.96123 12.8806 8.70923 12.6286 8.70923 12.3181V10.6523C8.70923 10.3418 8.96123 10.0898 9.27173 10.0898C9.58223 10.0898 9.83423 10.3418 9.83423 10.6523V12.3181C9.83423 12.6286 9.58223 12.8806 9.27173 12.8806Z"
                                             fill="currentcolor" />
                                     </svg>
-
                                 </span>
 
                                 <span class="delete-btn"

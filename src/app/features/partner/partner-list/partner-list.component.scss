@@ -264,6 +264,8 @@ h2 {
 
                     .status {
                         width: 123px;
+                        display: flex;
+                        border: none;
 
                         &.isActive {
                             color: #53D07C;
@@ -271,6 +273,10 @@ h2 {
 
                         &.isLock {
                             color: #8D99BB;
+                        }
+
+                        .icon {
+                            margin-right: 4px;
                         }
                     }
 

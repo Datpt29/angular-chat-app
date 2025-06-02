@@ -1,8 +1,8 @@
 <div id="header">
     <div class="tab" (click)="hideUserInfo($event, UserInfo)">
-        <div class="tab-item ">
-            <img class="tag-user" src="./assets/icon/tag-user.svg" alt="">
-            Đối tác
+        <div class="tab-item" *ngIf="sideBarItem.length !== 0">
+            <span class="icon" [innerHTML]="sideBarItem.icon"></span>
+            {{sideBarItem.name}}
             <span class="close">
                 <img src="./assets/icon/close.svg" alt="">
             </span>
@@ -51,7 +51,7 @@
                 Cài đặt
             </a>
         </div>
-        <div class="options logout">
+        <div class="options logout" (click)="showLogoutModal()">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
@@ -61,3 +61,19 @@
             Đăng xuất
         </div>
     </div>
+
+    <div class="logout-modal" *ngIf="showModal">
+        <div class="logout-container" #popupContainer>
+            <p>Bạn có chắc chắn muốn thoát không?</p>
+            <span class="close-modal" (click)="hideLogoutModal()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+            </span>
+            <span (click)="cancel()" class="stay">Tiếp tục đăng nhập</span>
+            <span (click)="confirm()" class="logout-btn">Đăng xuất</span>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { SharedService } from 'src/app/core/services/shared.service';
 
 @Component({
   selector: 'app-header',
@@ -8,12 +10,18 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 export class HeaderComponent implements OnInit {
   isUserInfoVisible = false;
   @ViewChild('UserInfo') UserInfo?: ElementRef;
-  constructor() { }
+  sideBarItem: any;
+  showModal = false;
+
+  constructor(private Shared: SharedService, private route: Router) { }
 
   ngOnInit(): void {
+    this.Shared.currentMessage$.subscribe(data => {
+      if (data) {
+        this.sideBarItem = data;
+      }
+    });
   }
-
-
 
   showUserInfo(): void {
     this.isUserInfoVisible = true;
@@ -28,5 +36,20 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  showLogoutModal() {
+    this.showModal = true;
+  }
 
+  hideLogoutModal() {
+    this.showModal = false;
+  }
+
+  cancel() {
+    this.hideLogoutModal();
+  }
+
+  confirm() {
+    this.route.navigate(['auth/login']);
+    this.hideLogoutModal();
+  }
 }

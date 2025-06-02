@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { sidebarItem } from 'src/app/models/sidebarItem';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { SharedService } from 'src/app/core/services/shared.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,11 +11,11 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 export class SidebarComponent implements OnInit {
   sidebarItems: sidebarItem[];
 
-  constructor(private sanitizer: DomSanitizer) {
+  constructor(private sanitizer: DomSanitizer, private Shared: SharedService) {
     this.sidebarItems = [
       {
         id: 1,
-        name: 'userlist',
+        name: 'Người dùng',
         icon: this.sanitizer.bypassSecurityTrustHtml(`
           <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path class="icon-fill" d="M9.15994 11.62C9.12994 11.62 9.10994 11.62 9.07994 11.62C9.02994 11.61 8.95994 11.61 8.89994 11.62C5.99994 11.53 3.80994 9.25 3.80994 6.44C3.80994 3.58 6.13994 1.25 8.99994 1.25C11.8599 1.25 14.1899 3.58 14.1899 6.44C14.1799 9.25 11.9799 11.53 9.18994 11.62C9.17994 11.62 9.16994 11.62 9.15994 11.62ZM8.99994 2.75C6.96994 2.75 5.30994 4.41 5.30994 6.44C5.30994 8.44 6.86994 10.05 8.85994 10.12C8.91994 10.11 9.04994 10.11 9.17994 10.12C11.1399 10.03 12.6799 8.42 12.6899 6.44C12.6899 4.41 11.0299 2.75 8.99994 2.75Z" fill="#353B44"/>
@@ -27,7 +28,7 @@ export class SidebarComponent implements OnInit {
       },
       {
         id: 2,
-        name: 'partnerlist',
+        name: 'Đối tác',
         icon: this.sanitizer.bypassSecurityTrustHtml(`
           <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path class="icon-fill" d="M12 22.7498C11.3 22.7498 10.59 22.4798 10.06 21.9498L8.34998 20.2598C7.92998 19.8398 7.35001 19.6097 6.76001 19.6097H6C3.93 19.6097 2.25 17.9398 2.25 15.8898V4.97974C2.25 2.92974 3.93 1.25977 6 1.25977H18C20.07 1.25977 21.75 2.92974 21.75 4.97974V15.8898C21.75 17.9398 20.07 19.6097 18 19.6097H17.24C16.65 19.6097 16.07 19.8498 15.65 20.2598L13.94 21.9498C13.41 22.4798 12.7 22.7498 12 22.7498ZM6 2.74976C4.76 2.74976 3.75 3.74973 3.75 4.96973V15.8798C3.75 17.1098 4.76 18.0997 6 18.0997H6.76001C7.75001 18.0997 8.70997 18.4998 9.40997 19.1898L11.12 20.8798C11.61 21.3598 12.4 21.3598 12.89 20.8798L14.6 19.1898C15.3 18.4998 16.26 18.0997 17.25 18.0997H18C19.24 18.0997 20.25 17.0998 20.25 15.8798V4.96973C20.25 3.73973 19.24 2.74976 18 2.74976H6Z" fill="#353B44"/>
@@ -43,4 +44,7 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  sendToHeader(sidebarItem: any) {
+    this.Shared.updateMessage(sidebarItem);
+  }
 }

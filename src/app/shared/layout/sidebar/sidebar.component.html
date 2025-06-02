@@ -2,7 +2,8 @@
     <img class="logo" src="./assets/img/logo.jpg" alt="">
 
     <div class="sidebar-list">
-        <div class="sidebar-item" *ngFor="let sidebarItem of sidebarItems">
+        <div class="sidebar-item" *ngFor="let sidebarItem of sidebarItems" (click)="sendToHeader(sidebarItem)"
+            [class.isActive]="">
             <a [routerLink]="sidebarItem.path" routerLinkActive="active">
                 <span [innerHTML]="sidebarItem.icon"></span>
             </a>

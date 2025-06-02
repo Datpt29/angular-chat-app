@@ -183,7 +183,8 @@ export class PartnerAddComponent implements OnInit {
 
   addForm2: FormGroup = new FormGroup({
     duration: new FormControl('month'),
-    servicePackage: new FormControl('Cơ bản')
+    servicePackage: new FormControl('Cơ bản'),
+    status: new FormControl('')
   });
 
   get duration() { return this.addForm2.get('duration')?.value }
@@ -204,15 +205,12 @@ export class PartnerAddComponent implements OnInit {
         ...this.addForm1.value,
         ...this.addForm2.value
       };
-      this.Partner.create(data).subscribe({
-        next: (res: any) => {
-          this.addForm1.reset;
-          this.addForm2.reset;
-          this.route.navigate(['partner/partnerlist']);
-        }
-      })
+      this.Partner.create(data).subscribe(() => {
+        this.addForm1.reset;
+        this.addForm2.reset;
+        this.route.navigate(['partner/partnerlist']);
+      }
+      )
     }
   }
-
-
 }

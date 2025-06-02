@@ -102,15 +102,12 @@ export class PartnerListComponent implements OnInit {
 
   onUpdate(): void {
     if (this.editForm.valid) {
-      console.log(this.editForm.value.id);
-      this.Partner.update(this.editForm.value.id, this.editForm.value).subscribe({
-        next: (res) => {
-          this.getAll();
-          this.editForm.reset();
-          this.hideEditModal();
-          console.log(res);
-        }
-      })
+      this.Partner.update(this.editForm.value.id, this.editForm.value).subscribe(() => {
+        this.getAll();
+        this.editForm.reset();
+        this.hideEditModal();
+      }
+      )
     }
   }
 
@@ -129,6 +126,13 @@ export class PartnerListComponent implements OnInit {
     this.Partner.delete(this.idDelete).subscribe(() => {
       this.getAll();
       this.hideDeleteModal();
+    })
+  }
+
+  lockPartner(partner: any) {
+    this.Partner.lock(partner.id, !partner.status).subscribe(() => {
+      partner.status = !partner.status;
+      this.getAll();
     })
   }
 }
